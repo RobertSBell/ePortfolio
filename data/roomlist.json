@@ -1,0 +1,20 @@
+[
+    {
+        "name": "First Class Room",
+        "description": "Cras dui sapien, feugiat vitae tristique ut, lobortis tempor orci. Donec pulvinar sagittis metus ut tristique. Pellentes que habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas idios.",
+        "image": "images/first-class.jpg",
+        "rate": "$220"
+    },
+    {
+        "name": "Deluxe Room",
+        "description": "Cras dui sapien, feugiat vitae tristique ut, lobortis tempor orci. Donec pulvinar sagittis metus ut tristique. Pellentes que habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas idios.",
+        "image": "images/deluxe.jpg",
+        "rate": "$150"
+    },
+    {
+        "name": "Suite Room",
+        "description": "Cras dui sapien, feugiat vitae tristique ut, lobortis tempor orci. Donec pulvinar sagittis metus ut tristique. Pellentes que habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas idios.",
+        "image": "images/suite.jpg",
+        "rate": "$180"
+    }
+]
