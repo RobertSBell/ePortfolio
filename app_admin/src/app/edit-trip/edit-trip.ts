@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router } from '@angular/router';
 import { TripData } from '../services/trip-data';
 import { Trip } from '../models/trip';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-trip',
@@ -21,61 +22,71 @@ export class EditTrip implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private tripData: TripData
+    private tripData: TripData,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    // Retrieve stashed trip ID
-    let tripCode = localStorage.getItem("tripCode");
-      if (!tripCode) {
-      alert("Something wrong, couldn't find where I stashed tripCode!");
-      this.router.navigate(['']);
-    return;
-    }
-console.log('EditTripComponent::ngOnInit');
-console.log('tripcode:' + tripCode);
-    this.editForm = this.formBuilder.group({
-      _id: [],
-      code: [tripCode, Validators.required],
-      name: ['', Validators.required],
-      length: ['', Validators.required],
-      start: ['', Validators.required],
-      resort: ['', Validators.required],
-      perPerson: ['', Validators.required],
-      image: ['', Validators.required],
-      description: ['', Validators.required],
-    })
+  originalCode!: string;
 
-    this.tripData.getTrip('tripCode')
-    .subscribe({
-      next: (value: any) => {
-        this.trip = value;
-        this.editForm.patchValue(value[0]);
-        if(!value){
-          this.message = 'No trip found with the provided code.';
-        }else{
-          this.message = 'Trip ' + tripCode + ' retrieved successfully.';}
-      }
-    })
+  ngOnInit(): void {
+
+  const tripCode = this.route.snapshot.paramMap.get('code');
+
+  if (!tripCode) {
+    this.router.navigate(['']);
+    return;
   }
+  
+  this.originalCode = tripCode;
+
+  this.editForm = this.formBuilder.group({
+    _id: [],
+    code: [tripCode, Validators.required],
+    name: ['', Validators.required],
+    length: ['', Validators.required],
+    start: ['', Validators.required],
+    resort: ['', Validators.required],
+    perPerson: ['', Validators.required],
+    image: ['', Validators.required],
+    description: ['', Validators.required],
+  });
+
+  this.tripData.getTrip(tripCode).subscribe({
+    next: (value: Trip) => {
+      
+        console.log("Trip object:", value);
+        console.log("trip.start:", value.start);
+        console.log("typeof trip.start:", typeof value.start);
+        console.log("instanceof Date:", value.start instanceof Date);
+      this.trip = value;
+
+      this.editForm.patchValue({
+        ...value,
+        start: new Date(value.start).toISOString().split('T')[0] // Format the date to YYYY-MM-DD
+      })
+
+      this.message = `Trip ${tripCode} retrieved successfully.`;
+
+    },
+    error: (err) => {
+      console.error(err);
+      this.message = 'Trip not found.';
+    }
+  });
+}
 
   public onSubmit()
   {
-    this.submitted = true;
-    if (this.editForm.valid) {
-      const tripCode = this.editForm.get('code')?.value;
-      this.tripData.updateTrip(tripCode, this.editForm.value)
-      .subscribe({
-        next: (value: any) => {
-          console.log(value);
-          this.router.navigate(['']);
-        },
-        error: (error: any) => {
-          console.log('Error: ' + error);
-        }
-      })
-      console.log('Edit form submitted', this.editForm.value);
-    }
+    const updatedTrip: Trip = {
+    ...this.editForm.value,
+    start: new Date(this.editForm.value.start)
+  };
+
+  this.tripData.updateTrip(this.originalCode, updatedTrip)
+    .subscribe({
+        next: () => this.router.navigate(['']),
+        error: err => console.error(err)
+    });
   }
 
   get f() {

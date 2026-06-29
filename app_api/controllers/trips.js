@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Trip = require('../models/travlr'); // Register model
+const User = require('../models/user'); // Register model
 const Model = mongoose.model('trips');
 
 // GET: /trips - Return all trips
@@ -64,6 +65,24 @@ const tripsFindByCode = async (req, res) => {
             .status(200)
             .json(q);
     }
+};
+
+// Helper function: getUser
+const getUser = async (req, res, callback) => {
+  if (req.auth && req.auth.email) {
+    try {
+      const user = await User.findOne({ email: req.auth.email });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      callback(req, res, user); // Pass the user to the callback for extensibility
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Server error", details: err });
+    }
+  } else {
+    return res.status(401).json({ message: "Unauthorized access" });
+  }
 };
 
 // PUT: /trips/:tripCode - Adds a new Trip

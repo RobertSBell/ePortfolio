@@ -1,8 +1,19 @@
+// Bring in the authentication middleware
+const dotenv = require('dotenv');
+
+const result = dotenv.config();
+
+console.log(result);
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+
+// Bring in Passport configuration
+var passport = require('./app_api/config/passport');
 
 var mainRouter = require('./app_server/routes/main');
 var usersRouter = require('./app_server/routes/users');
@@ -15,6 +26,7 @@ var handlebars = require('hbs');
 var db = require('./app_api/models/db');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -40,11 +52,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Enable CORS
+// Enable CORS for the Angular admin app and prevent the browser from caching API responses
 app.use('/api', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200'); // Adjust this to your Angular app's URL
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.header('Pragma', 'no-cache');
+  res.header('Expires', '0');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
   next();
 });
 

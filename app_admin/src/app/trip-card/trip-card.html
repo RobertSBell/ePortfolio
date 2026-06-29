@@ -11,7 +11,7 @@ alt="trip thumbnail" class="card-img-top">
                     </p>
                     <p class="card-text" [innerHTML]="trip.description">
                     </p>
-                    <div>
+                    <div *ngIf="isLoggedIn()">
                         <button (click)="editTrip(trip)" class="btn btn-primary"> Edit Trip</button>
                         
                     </div>

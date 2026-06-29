@@ -1,9 +1,28 @@
 <!-- <pre>{{trips | json}}</pre> -->
-<div>
-    <button (click)="addTrip()" class="btn btn-info"> Add Trip </button>
+<div *ngIf="isLoggedIn()">
+    <button (click)="addTrip()" class="btn btn-info">
+         Add Trip 
+    </button>
 </div>
-<div class="row">
-    <div *ngFor="let trip of trips" class ="col-md-3">
-        <app-trip-card [trip]="trip" class="card-deck mt-4"></app-trip-card>
+@if (message) {
+    <div class="alert alert-info mt-3">
+        {{ message }}
     </div>
+}
+
+<div class="row">
+    @for (trip of trips; track trip.code) {
+        <div class="col-md-3">
+            <app-trip-card
+                [trip]="trip"
+                class="card-deck mt-4">
+            </app-trip-card>
+        </div>
+    } @empty {
+        <div class="col-12">
+            <div class="alert alert-warning">
+                No trips available.
+            </div>
+        </div>
+    }
 </div>

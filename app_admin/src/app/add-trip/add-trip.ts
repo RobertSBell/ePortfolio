@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { TripData } from "../services/trip-data";
+import { AuthenticationService } from '../services/authentication';
 
 @Component({
 selector: 'app-add-trip',
@@ -19,10 +20,15 @@ submitted = false;
 constructor(
 private formBuilder: FormBuilder,
 private router: Router,
-private tripService: TripData
+private tripService: TripData,
+private authenticationService: AuthenticationService
 ) { }
 
-
+public isLoggedIn()
+  {
+  return this.authenticationService.isLoggedIn();
+  }
+  
 ngOnInit() {
 this.addForm = this.formBuilder.group({
 _id: [],
