@@ -893,12 +893,12 @@ if (RTC.getTime(currentTime)) {
     // 24-hour format with seconds.
     //
     // Example:
-    // Aug 23 19:28:42
+    // Aug 23rd 19:28
 
     snprintf(
       line1,
       sizeof(line1),
-      "%s %d%s  %d:%02d",
+      "%s %d%s  %02d:%02d",
       getMonthName(currentTime.getMonth()),
       day,
       getDaySuffix(day),
