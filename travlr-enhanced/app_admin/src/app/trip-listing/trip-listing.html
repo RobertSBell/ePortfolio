@@ -1,0 +1,31 @@
+<!-- <pre>{{trips | json}}</pre> -->
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+    @if (message) {
+        <div class="alert alert-info mt-3">
+            {{ message }}
+        </div>
+    }
+    <div style="text-align:right" *ngIf="isLoggedIn()">
+        <button (click)="addTrip()" class="btn btn-info">
+            Add Trip 
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    @for (trip of trips; track trip.code) {
+        <div class="col-md-3">
+            <app-trip-card
+                [trip]="trip"
+                class="card-deck mt-4">
+            </app-trip-card>
+        </div>
+    } @empty {
+        <div class="col-12">
+            <div class="alert alert-warning">
+                No trips available.
+            </div>
+        </div>
+    }
+</div>
