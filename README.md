@@ -1,4 +1,3 @@
-# Robert S Bell's ePortfolio
 
 ## Self-Assessment
 #### Foundation
