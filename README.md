@@ -38,8 +38,9 @@ In the third round of enhancements, I put a great deal of work into the display 
 If I were to make further updates, I’d like to hook it to a heater and AC and give it control of both.  I’d also like to add a energy saving mode.
 
 #### Visual Examples
-#####[Original implementation written in python running on Raspberry Pi in Ubuntu](https://youtu.be/t8UX5NL1YPQ)
-#####[Current implementation re-written and enhanced in C++ running natively on Arduino Uno R4 Wifi](https://youtu.be/ZPn_nUhVgnc)
+##### [Original implementation written in python running on Raspberry Pi in Ubuntu](https://youtu.be/t8UX5NL1YPQ)
+
+##### [Current implementation re-written and enhanced in C++ running natively on Arduino Uno R4 Wifi](https://youtu.be/ZPn_nUhVgnc)
 
 #### Brief Reflection
 I learned a lot about working with sensors and developing software that spoke directly to the circuitry I designed.  In porting the software I encountered a few challenges that I mostly outlined above. The temperature sensor I had originally designed for was lost sometime last year, so I needed to replace it with another one with a different interface.  Moreover, I needed to recreate features that are simple within a desktop environment that are more difficult within an embedded system.
