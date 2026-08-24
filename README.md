@@ -25,6 +25,8 @@ In the program I have learned a great deal about communication with stakeholders
 
 ## [Casual Code Review](https://youtu.be/U2nA5Dp6yIw) (YouTube Link)
 
+## [Narrative Milestones Collection](/Narrative Milestones/)
+
 ## Artifact 1 - Thermostat
 This artifact comes from my embedded systems code for my thermostat project in CS 350.  It was a “smart” thermostat, intended for a hypothetical unified heating and cooling system.  It would alternate between showing the current temperature and the set temperature.  It uses indicator lights to show when it was above or below the set temperature.  It provides a user interface of three physical buttons, one button would change the states between heating, cooling, and off, another button would adjust the desired temperature downwards and the other upwards.  It displays the date and time.  It was created in the middle of 2025.
 
