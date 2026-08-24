@@ -18,3 +18,26 @@ I've studied security and encryption as much as anything else throughout the pro
 
 #### Communication, Collaboration, and Stakeholders
 In the program I have learned a great deal about communication with stakeholders and adapting my explanations to my audience as well as how to collaborate and code with collaboration in mind.  I have also grown comfortable with developing diagrams for communicating with coworkers and stakeholders alike.  Creating complex state machine diagrams and simple visual illustrations.  Adding to my existing prowess in image creation and editing in Photoshop, 3D Printing examples and prototypes, and video editing in DaVinci Resolve I am skilled in many visual means of presentation.
+![Neural Network Diagram](/assets/NNLOutline.png)
+![State Machine Diagram](/assets/StateMachineDiagram.png)
+
+## [Casual Code Review](https://youtu.be/U2nA5Dp6yIw)
+
+## Artifact 1 - Thermostat
+This artifact comes from my embedded systems code for my thermostat project in CS 350.  It was a “smart” thermostat, intended for a hypothetical unified heating and cooling system.  It would alternate between showing the current temperature and the set temperature.  It uses indicator lights to show when it was above or below the set temperature.  It provides a user interface of three physical buttons, one button would change the states between heating, cooling, and off, another button would adjust the desired temperature downwards and the other upwards.  It displays the date and time.  It was created in the middle of 2025.
+
+#### Why I Picked It
+I selected this item because I was unsatisfied with the original assignment.  The original was a piece of software running in an Ubuntu environment on an expensive SBC with specs comparable to an old desktop.  I wanted to create a truly embedded system running on a more realistic board.  The unaltered artifact demonstrates my ability to manage CPU threading in code and develop specific hardware components, make conversions between variable types and units as needed, as well as using innovative techniques to produce the best results such as using custom bitmaps to better convey visuals.  My alterations demonstrate my ability to port code to new languages and hardware, to develop software for embedded systems and adapt to different components, as well as flexible problem-solving ability.
+
+#### The Enhancements I Made
+I improved the artifact first by porting it from python running within Ubuntu on a Raspberry Pi 4 to running compiled in C++ on an Arduino UNO R4.  The other improvements arising from porting over all the features that were “cheated” by having a typical operating system to reference in the original code.  The original code took date and time from the operating system.  I added code to connect to the user’s router, query NTP to get UTC time and then query ipapi.co for the locale/timezone of the user’s public IP address.  Once discovered the device’s built-in clock takes over so a stable internet connection is not required, it checks once every 24 hours in case of a time change.  I also added the ability to display the temperature in both Fahrenheit and Celsius using the R4’s built in LED dot matrix display in addition to the LCD 16x2 character display.
+In the second round of enhancements, I set the LCD display to show the current temp for 10 seconds and the set temp for 5 seconds in cycles but whenever the temperature is changed with a button press the set temp is displayed for the next 5 seconds so the user can see what they’re working on.  I reworked the LED dot matrix display function to display current temp except for 5 seconds after the set temp has been changed using the previous code.  I fixed a bug where the pulsing of LED lights would reset when temperature was changed.
+In the third round of enhancements, I put a great deal of work into the display redefining things for the most attractive look.  The date now displays as “Aug 23rd” instead of “Aug 23” with a function added to change the suffix based on the day.  I added the ability to display time according to a 12 hour clock “7:58AM” instead of  “07:58:05”.  So the first line reads “Aug 23rd  7:58PM” instead of “Aug 23 07:58:05”.  I added multiple functions to the green state button: pressing the button changes the states normally, however holding the button down for 3 seconds switches between displaying 12 hour time and military time.  The military time now displays as  “Aug 23rd  07:58”.
+If I were to make further updates, I’d like to hook it to a heater and AC and give it control of both.  I’d also like to add a energy saving mode.
+
+#### Visual Examples
+
+
+#### Brief Reflection
+I learned a lot about working with sensors and developing software that spoke directly to the circuitry I designed.  In porting the software I encountered a few challenges that I mostly outlined above. The temperature sensor I had originally designed for was lost sometime last year, so I needed to replace it with another one with a different interface.  Moreover, I needed to recreate features that are simple within a desktop environment that are more difficult within an embedded system.
+
