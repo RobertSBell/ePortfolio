@@ -1,5 +1,5 @@
 
-## Self-Assessment
+## Professional Self-Assessment
 #### Foundation
 Between the two programs I have developed a particularly broad foundation in software development and developed the skills needed to tackle highly advanced projects as well as the foundation and flexibility required to pick up new skills as needed.  I have worked in all of the standard programming languages though I have also tackled niche languages like COBOL in addition to getting experience porting software from one language to another.  I have worked in a dozen different development environments and with wide range of development tools.
 
