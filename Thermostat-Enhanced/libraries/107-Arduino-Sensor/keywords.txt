@@ -1,0 +1,33 @@
+#######################################
+# Syntax Coloring Map for 107-Arduino-Sensor
+#######################################
+
+#######################################
+# Class (KEYWORD1)
+#######################################
+
+drone	KEYWORD1
+ArduinoSensorBase	KEYWORD1
+LengthSensorBase	KEYWORD1
+PressureSensorBase	KEYWORD1
+OnSensorValueUpdateFunc	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+name	KEYWORD2
+maxValue	KEYWORD2
+minValue	KEYWORD2
+resolution	KEYWORD2
+updateRate	KEYWORD2
+setMaxValue	KEYWORD2
+setMinValue	KEYWORD2
+setResolution	KEYWORD2
+setUpdateRate	KEYWORD2
+get	KEYWORD2
+onSensorValueUpdate	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
