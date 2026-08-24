@@ -1,20 +1,108 @@
 <div class="card ml-4">
-            <div class="card-header">{{ trip.name }}</div>
-                <img src="assets/images/{{ trip.image }}" alt="trip thumbnail" class="card-img-top">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">
-                    {{ trip.resort }}
-                    </h6>
-                    <p class="card-subtitle mt-3 mb-3 text-muted">
-                    {{trip.length}} only {{trip.perPerson|currency:'USD':'symbol'}} per person
-                    </p>
-                    <p class="card-text" [innerHTML]="trip.description">
-                    </p>
 
-                    <!-- Only show the edit button if the user is logged in -->
-                    <div *ngIf="isLoggedIn()">
-                        <button (click)="editTrip(trip)" class="btn btn-primary"> Edit Trip</button>
-                        
-                    </div>
+    <div class="card-header">
+        <b>{{ trip.name }}</b>
+    </div>
+
+    <img
+        src="assets/images/{{ trip.image }}"
+        alt="trip thumbnail"
+        class="card-img-top"
+        onerror="this.onerror=null; this.src='assets/images/default-trip.jpg';">
+
+    <div class="card-body">
+
+        <div class="d-flex justify-content-between align-items-center mt-0 mb-1">
+            <h5 class="card-subtitle mb-0 text-muted">
+                {{ trip.resort }}
+            </h5>
+
+            @if (trip.starRating != null) {
+                <div class="small text-muted ms-3">
+                    {{ trip.starRating }}/5 ⭐
                 </div>
+            }
+        </div>
+
+        <!-- Trip Length / Expandable Dates -->
+        <div class="mt-3 mb-3">
+
+            <button
+                type="button"
+                class="btn btn-link p-0 text-decoration-none text-start text-muted trip-length-button"
+                (click)="showDates = !showDates">
+
+                <span class="me-0">
+                    <b>Trip Length:</b>
+                    <span class="ms-3">
+                        {{ trip.length }} days / {{ trip.length - 1 }} nights
+                    </span>
+                </span>
+
+                <span class="ms-1">
+                    @if (showDates) {
+                        ▲
+                    } @else {
+                        ▼
+                    }
+                </span>
+                
+                @if (!showDates) {
+                    <p class="trip-tooltip">
+                        Click to view trip dates.
+                    </p>
+                }
+
+            </button>
+
+            @if (showDates) {
+
+                <div class="ms-4 mt-1 text-muted small">
+
+                    <div class="date-row">
+                        <b>Start Date:</b>
+                        <span>{{ trip.start | date:'MM/dd/yyyy' }}</span>
+                    </div>
+
+                    <div class="date-row">
+                        <b>Return Date:</b>
+                        <span>{{ trip.end | date:'MM/dd/yyyy' }}</span>
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+        <!-- Price -->
+        <p class="card-subtitle mt-3 mb-3 text-muted">
+            <b>Price:</b>
+            {{ trip.perPerson | currency:'USD':'symbol' }} per person
+        </p>
+
+        <!-- Description -->
+        <p class="card-text" [innerHTML]="trip.description">
+        </p>
+
+        <!-- Edit / Trip Code -->
+        @if (isLoggedIn()) {
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+
+                <button
+                    (click)="editTrip(trip)"
+                    class="btn btn-primary">
+                    Edit Trip
+                </button>
+
+                <small class="text-muted">
+                    Trip Code: {{ trip.code }}
+                </small>
+
+            </div>
+
+        }
+
+    </div>
 </div>

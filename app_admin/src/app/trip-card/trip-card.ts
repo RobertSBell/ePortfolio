@@ -16,6 +16,8 @@ import { AuthenticationService } from '../services/authentication';
 export class TripCard implements OnInit {
   @Input({ required: true }) trip!: Trip;
 
+  showDates = false;
+  
   constructor(private router: Router,
     private authenticationService: AuthenticationService
   ) {}

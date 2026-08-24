@@ -24,28 +24,46 @@ const tripsList = async (req, res) => {
 };
 
 // POST: /trips - Add a new trip
+// POST: /trips - Add a new trip
 const tripsAddTrip = async (req, res) => {
     const newTrip = new Trip({
         code: req.body.code,
         name: req.body.name,
         length: req.body.length,
         start: req.body.start,
+        end: req.body.end,
         resort: req.body.resort,
+        starRating: req.body.starRating,
         perPerson: req.body.perPerson,
         image: req.body.image,
         description: req.body.description
     });
 
-    const q = await newTrip.save();
+    try {
+        const q = await newTrip.save();
 
-    if (!q) {
-        return res
-            .status(400)
-            .json({message: "Error creating trip"});
-    } else {
         return res
             .status(201)
             .json(q);
+
+    } catch (err) {
+
+        // Duplicate trip code
+        if (err.code === 11000) {
+            return res
+                .status(409)
+                .json({
+                    message: "A trip with this code already exists."
+                });
+        }
+
+        console.error(err);
+
+        return res
+            .status(400)
+            .json({
+                message: "Error creating trip."
+            });
     }
 };
 
@@ -89,40 +107,63 @@ const getUser = async (req, res, callback) => {
 // PUT: /trips/:tripCode - Adds a new Trip
 // Regardless of outcome, response must include HTML status
 // and JSON message to the requesting client
-const tripsUpdateTrip = async(req, res) => {
-    // Uncomment for debugging
-    /*
-    console.log(req.params);
-    console.log(req.body);
-    */
-    const q = await Model
-    .findOneAndUpdate(
-        { 'code' : req.params.tripCode },
-        {
-            code: req.body.code,
-            name: req.body.name,
-            length: req.body.length,
-            start: req.body.start,
-            resort: req.body.resort,
-            perPerson: req.body.perPerson,
-            image: req.body.image,
-            description: req.body.description
+// PUT: /trips/:tripCode - Update an existing Trip
+const tripsUpdateTrip = async (req, res) => {
+
+    try {
+        const q = await Model
+            .findOneAndUpdate(
+                { code: req.params.tripCode },
+                {
+                    code: req.body.code,
+                    name: req.body.name,
+                    length: req.body.length,
+                    start: req.body.start,
+                    end: req.body.end,
+                    resort: req.body.resort,
+                    starRating: req.body.starRating,
+                    perPerson: req.body.perPerson,
+                    image: req.body.image,
+                    description: req.body.description
+                },
+                {
+                    new: true,
+                    runValidators: true
+                }
+            )
+            .exec();
+
+        if (!q) {
+            return res
+                .status(404)
+                .json({
+                    message: "Trip not found."
+                });
         }
-    )
-    .exec();
-    
-    if(!q)
-    { // Database returned no data
-    return res
-    .status(400)
-    .json(err);
-    } else { // Return resulting updated trip
-    return res
-    .status(201)
-    .json(q);
+
+        return res
+            .status(200)
+            .json(q);
+
+    } catch (err) {
+
+        // Duplicate trip code
+        if (err.code === 11000) {
+            return res
+                .status(409)
+                .json({
+                    message: "A trip with this code already exists."
+                });
+        }
+
+        console.error(err);
+
+        return res
+            .status(400)
+            .json({
+                message: "Error updating trip."
+            });
     }
-    // Uncomment the following line to show results in the console for debugging
-    // console.log(q);
 };
 
 

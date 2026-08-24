@@ -1,35 +1,71 @@
 const tripsEndpoint = 'http://localhost:3000/api/trips';
-const options = {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json'
-  }
-}
-// var fs = require('fs');
-// var trips = JSON.parse(fs.readFileSync('./data/trips.json', 'utf8'));
 
-/* Get travel view */
-exports.travel = async function(req, res, next) {
-  // console.log('TRAVEL CONTROLLER BEGINS');
-  await fetch(tripsEndpoint, options)
-    .then(res => res.json())
-    .then(json => {
-      let message = null;
-      if (!(json instanceof Array)) {
-        message = "API lookup error: ";
-        json = [];
-      } else {
-        if(!json.length) {
-          message = "No trips found in our database!.";
-        }
-      }
-      res.render('travel', {title: 'Travlr Getaways', trips: json});
-    })
-    .catch((err) => res.status(500).send(err.message));
+const options = {
+    method: 'GET',
+    headers: {
+        'Accept': 'application/json'
+    }
 };
 
+// Get travel view
+exports.travel = async function(req, res, next) {
 
+    try {
+        const response = await fetch(tripsEndpoint, options);
 
-module.exports = { 
+        if (!response.ok) {
+            throw new Error(`API returned status ${response.status}`);
+        }
+
+        let json = await response.json();
+
+        let message = null;
+
+        if (!Array.isArray(json)) {
+            message = "API lookup error.";
+            json = [];
+        }
+
+        const trips = json.map(trip => {
+
+            const start = new Date(trip.start);
+            const end = new Date(trip.end);
+
+            const length = Number(trip.length);
+
+            return {
+                ...trip,
+
+                // Values formatted specifically for the public Travel page
+                startDate: start.toLocaleDateString('en-US'),
+                endDate: end.toLocaleDateString('en-US'),
+                nights: length - 1,
+
+                // Convert Decimal128 response to a regular number
+                price: Number(
+                    typeof trip.perPerson === 'object'
+                        ? trip.perPerson.$numberDecimal
+                        : trip.perPerson
+                ).toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                })
+            };
+        });
+
+        res.render('travel', {
+            title: 'Travlr Getaways',
+            currentPage: 'travel',
+            trips: trips,
+            message: message
+        });
+
+    } catch (err) {
+        console.error('Travel API error:', err);
+        res.status(500).send(err.message);
+    }
+};
+
+module.exports = {
     travel: this.travel
 };

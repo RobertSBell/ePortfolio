@@ -1,14 +1,17 @@
 <!-- <pre>{{trips | json}}</pre> -->
-<div *ngIf="isLoggedIn()">
-    <button (click)="addTrip()" class="btn btn-info">
-         Add Trip 
-    </button>
-</div>
-@if (message) {
-    <div class="alert alert-info mt-3">
-        {{ message }}
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+    @if (message) {
+        <div class="alert alert-info mt-3">
+            {{ message }}
+        </div>
+    }
+    <div style="text-align:right" *ngIf="isLoggedIn()">
+        <button (click)="addTrip()" class="btn btn-info">
+            Add Trip 
+        </button>
     </div>
-}
+</div>
 
 <div class="row">
     @for (trip of trips; track trip.code) {

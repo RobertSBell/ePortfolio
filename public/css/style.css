@@ -87,6 +87,39 @@ img {
 	color: #e4e1bd;
 }
 /*------------------------------ CONTENTS ------------------------------*/
+.trip-dates {
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 3px;
+    font-size: 0.9em;
+    color: #777;
+    line-height: 1.5;
+}
+
+.trip-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0;
+}
+
+.trip-heading h2 {
+    margin-bottom: 0;
+}
+
+.trip-heading + p {
+    margin-top: 0px;
+}
+
+.trip-resort {
+    text-align: right;
+    color: #777;
+}
+
+.rating {
+    margin-left: 8px;
+}
+
 #contents {
 	display: inline-block;
 	width: 865px;
@@ -334,6 +367,7 @@ hr {
 	float: right;
 	border: 1px solid #2c9688;
 	margin-left: 15px;
+	margin-bottom: 30px;
 }
 /** News **/
 #news {
@@ -475,7 +509,6 @@ hr {
 }
 #footer ul.navigation {
 	float: left;
-	display: inline-block;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -507,7 +540,6 @@ hr {
 /** Connect **/
 #connect {
 	float: right;
-	display: inline-block;
 	line-height: 26px;
 	margin: 12px 0 0;
 }
@@ -542,4 +574,51 @@ hr {
 }
 #connect a.googleplus:hover {
 	background-position: 0 -197px;
+}
+
+#sites li .trip-heading {
+    margin-bottom: 0 !important;
+}
+
+#sites li .trip-heading h2 {
+    margin-bottom: 0 !important;
+}
+
+#sites li .trip-heading + p {
+    margin-top: 0 !important;
+}
+
+#sites li .trip-description {
+    display: block;
+    text-indent: 25px;
+}
+
+.trip-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 50%);
+    column-gap: 0px;
+    align-items: start;
+}
+
+.trip-heading h2 {
+    margin: 0;
+    min-width: 0;
+}
+
+.trip-resort {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 8px;
+
+    min-width: 0;
+    text-align: right;
+}
+
+.resort-name {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+.rating {
+    white-space: nowrap;
 }

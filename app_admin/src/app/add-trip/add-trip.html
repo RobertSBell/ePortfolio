@@ -1,5 +1,11 @@
 <div class="col-md-6">
     <h2 class="text-center">Add Trip</h2>
+    
+    @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+    </div>
+    }
 
     @if (addForm) {
 
@@ -44,20 +50,46 @@
         </div>
 
         <div class="form-group mb-3">
+
             <label>Length</label>
+
             <input
-                type="text"
+                type="number"
+                min="1"
+                step="1"
                 formControlName="length"
                 class="form-control"
                 placeholder="Trip Length"
-                [class.is-valid]="f['length'].valid && (f['length'].dirty || f['length'].touched)"
-                [class.is-invalid]="f['length'].invalid && (f['length'].dirty || f['length'].touched)">
 
-            @if (f['length'].errors && (f['length'].dirty || f['length'].touched)) {
+                [class.is-valid]="
+                    f['length'].valid &&
+                    (f['length'].dirty ||
+                    f['length'].touched)
+                "
+
+                [class.is-invalid]="
+                    f['length'].invalid &&
+                    (f['length'].dirty ||
+                    f['length'].touched)
+                "
+            >
+
+            @if (
+                f['length'].errors &&
+                (f['length'].dirty ||
+                f['length'].touched)
+            ) {
+
                 <div class="invalid-feedback d-block">
-                    Length is required.
+
+                    @if (f['length'].errors['positiveInteger']) {
+                        Length must be a positive whole number.
+                    }
+
                 </div>
+
             }
+
         </div>
 
         <div class="form-group mb-3">
@@ -72,6 +104,22 @@
             @if (f['start'].errors && (f['start'].dirty || f['start'].touched)) {
                 <div class="invalid-feedback d-block">
                     Start date is required.
+                </div>
+            }
+        </div>
+
+        <div class="form-group mb-3">
+            <label>End Date</label>
+            <input
+                type="date"
+                formControlName="end"
+                class="form-control"
+                [class.is-valid]="f['end'].valid && (f['end'].dirty || f['end'].touched)"
+                [class.is-invalid]="f['end'].invalid && (f['end'].dirty || f['end'].touched)">
+
+            @if (f['end'].errors && (f['end'].dirty || f['end'].touched)) {
+                <div class="invalid-feedback d-block">
+                    End date is required.
                 </div>
             }
         </div>
@@ -94,7 +142,57 @@
         </div>
 
         <div class="form-group mb-3">
+
+            <label>Star Rating</label>
+
+            <input
+                type="number"
+                min="1"
+                max="5"
+                step="0.1"
+                formControlName="starRating"
+                class="form-control"
+                placeholder="Star Rating"
+
+                [class.is-valid]="
+                    f['starRating'].valid &&
+                    (f['starRating'].dirty ||
+                    f['starRating'].touched)
+                "
+
+                [class.is-invalid]="
+                    f['starRating'].invalid &&
+                    (f['starRating'].dirty ||
+                    f['starRating'].touched)
+                "
+            >
+
+            @if (
+                f['starRating'].errors &&
+                (f['starRating'].dirty ||
+                f['starRating'].touched)
+            ) {
+
+                <div class="invalid-feedback d-block">
+
+                    @if (f['starRating'].errors['starRatingRange']) {
+                        Star rating must be between 1 and 5.
+                    }
+
+                    @if (f['starRating'].errors['starRatingDecimal']) {
+                        Star rating can have no more than 1 decimal place.
+                    }
+
+                </div>
+
+            }
+
+        </div>
+
+        <div class="form-group mb-3">
+
             <label>Price per Person</label>
+
             <input
                 type="number"
                 min="0.01"
@@ -102,16 +200,44 @@
                 formControlName="perPerson"
                 class="form-control"
                 placeholder="Price per Person"
-                [class.is-valid]="f['perPerson'].valid && (f['perPerson'].dirty || f['perPerson'].touched)"
-                [class.is-invalid]="f['perPerson'].invalid && (f['perPerson'].dirty || f['perPerson'].touched)">
 
-            @if (f['perPerson'].errors && (f['perPerson'].dirty || f['perPerson'].touched)) {
+                [class.is-valid]="
+                    f['perPerson'].valid &&
+                    (f['perPerson'].dirty ||
+                    f['perPerson'].touched)
+                "
+
+                [class.is-invalid]="
+                    f['perPerson'].invalid &&
+                    (f['perPerson'].dirty ||
+                    f['perPerson'].touched)
+                "
+            >
+
+            @if (
+                f['perPerson'].errors &&
+                (f['perPerson'].dirty ||
+                f['perPerson'].touched)
+            ) {
+
                 <div class="invalid-feedback d-block">
+
                     @if (f['perPerson'].errors['required']) {
                         Price is required.
                     }
+
+                    @if (f['perPerson'].errors['pricePositive']) {
+                        Price must be greater than $0.
+                    }
+
+                    @if (f['perPerson'].errors['priceDecimal']) {
+                        Price can have no more than 2 decimal places.
+                    }
+
                 </div>
+
             }
+
         </div>
 
         <div class="form-group mb-3">
