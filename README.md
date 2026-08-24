@@ -18,8 +18,8 @@ I've studied security and encryption as much as anything else throughout the pro
 
 #### Communication, Collaboration, and Stakeholders
 In the program I have learned a great deal about communication with stakeholders and adapting my explanations to my audience as well as how to collaborate and code with collaboration in mind.  I have also grown comfortable with developing diagrams for communicating with coworkers and stakeholders alike.  Creating complex state machine diagrams and simple visual illustrations.  Adding to my existing prowess in image creation and editing in Photoshop, 3D Printing examples and prototypes, and video editing in DaVinci Resolve I am skilled in many visual means of presentation.
-![Neural Network Diagram](/assets/img/NNLOutline.png)
-![State Machine Diagram](/assets/img/StateMachineDiagram.png)
+![Neural Network Diagram](docs/assets/img/NNLOutline.png)
+![State Machine Diagram](/docs/assets/img/StateMachineDiagram.png)
 
 ## [Casual Code Review](https://youtu.be/U2nA5Dp6yIw)
 
