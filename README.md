@@ -1,4 +1,4 @@
-<h2 style="color:white">Robert Bell's ePortfolio</h2>
+<h1 style="color:white">Robert Bell's ePortfolio</h1>
 
 ## Introduction
 Good day to you, my name is Robert Bell, I have a BS in Biology with a Math minor and started my Computer Science degree at Hillsborough Community College in 2021 before transferring to SNHU's program in 2023.
