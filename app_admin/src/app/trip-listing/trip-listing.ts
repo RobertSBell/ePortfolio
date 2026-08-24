@@ -7,9 +7,7 @@ import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { AuthenticationService } from '../services/authentication';
 
-
-
-
+// TripListing component displays a list of trips and provides functionality to add new trips
 @Component({
   selector: 'app-trip-listing',
   standalone: true,
@@ -18,26 +16,30 @@ import { AuthenticationService } from '../services/authentication';
   styleUrl: './trip-listing.css',
   //providers: [TripData]
 })
+
+
 export class TripListing implements OnInit, OnDestroy {
   trips!: Trip[];
   message: string = '';
 
+  // constructor injects TripData service, Router, ChangeDetectorRef, and AuthenticationService
   constructor(private tripData: TripData, private router: Router, private cdr: ChangeDetectorRef, private authenticationService: AuthenticationService) {
     console.log('TripListing constructor called');
   }
 
-  public isLoggedIn()
-  {
-  return this.authenticationService.isLoggedIn();
+  // isLoggedIn method checks if the user is logged in by calling the AuthenticationService
+  public isLoggedIn() {
+    return this.authenticationService.isLoggedIn();
   }
 
+  // addTrip method navigates to the add-trip route
   public addTrip(): void {
     this.router.navigate(['add-trip']);
   }
 
   
 
-
+  // getStuff method retrieves the list of trips from the TripData service and updates the component's state
   private getStuff(): void {
     console.log('TripListing getStuff called');
 
@@ -61,10 +63,13 @@ export class TripListing implements OnInit, OnDestroy {
     });
   }
 
+  // ngOnInit lifecycle hook is called when the component is initialized, it calls getStuff to load trips
   ngOnInit(): void {
     console.log('TripListing ngOnInit called');
     this.getStuff();
   }
+
+  // ngOnDestroy lifecycle hook is called when the component is destroyed, it logs a message
   ngOnDestroy(): void {
     console.log('TripListing ngOnDestroy called');
   }

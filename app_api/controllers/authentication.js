@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const User = require("../models/user"); 
 const passport = require("passport");
 
+// Register a new user
 const register = async (req, res) => {
   if (!req.body.name || !req.body.email || !req.body.password) {
     return res.status(400).json({ message: "All fields required" });
@@ -27,6 +28,8 @@ const register = async (req, res) => {
   }
 };
 
+
+// Login an existing user
 const login = (req, res, next) => {
   if (!req.body.email || !req.body.password) {
     return res.status(400).json({ message: "All fields required" });

@@ -1,7 +1,6 @@
 <div class="card ml-4">
             <div class="card-header">{{ trip.name }}</div>
-                <img src="assets/images/{{ trip.image }}"
-alt="trip thumbnail" class="card-img-top">
+                <img src="assets/images/{{ trip.image }}" alt="trip thumbnail" class="card-img-top">
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted">
                     {{ trip.resort }}
@@ -11,9 +10,11 @@ alt="trip thumbnail" class="card-img-top">
                     </p>
                     <p class="card-text" [innerHTML]="trip.description">
                     </p>
+
+                    <!-- Only show the edit button if the user is logged in -->
                     <div *ngIf="isLoggedIn()">
                         <button (click)="editTrip(trip)" class="btn btn-primary"> Edit Trip</button>
                         
                     </div>
                 </div>
-            </div>
+</div>

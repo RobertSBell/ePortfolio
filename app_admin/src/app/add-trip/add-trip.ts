@@ -6,22 +6,22 @@ import { TripData } from "../services/trip-data";
 import { AuthenticationService } from '../services/authentication';
 
 @Component({
-selector: 'app-add-trip',
-standalone: true,
-imports: [CommonModule, ReactiveFormsModule],
-templateUrl: './add-trip.html',
-styleUrl: './add-trip.css'
+  selector: 'app-add-trip',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './add-trip.html',
+  styleUrl: './add-trip.css'
 })
 
 export class AddTrip implements OnInit {
-addForm!: FormGroup;
-submitted = false;
+  addForm!: FormGroup;
+  submitted = false;    
 
-constructor(
-private formBuilder: FormBuilder,
-private router: Router,
-private tripService: TripData,
-private authenticationService: AuthenticationService
+  constructor(
+  private formBuilder: FormBuilder,
+  private router: Router,
+  private tripService: TripData,
+  private authenticationService: AuthenticationService
 ) { }
 
 public isLoggedIn()
@@ -30,31 +30,31 @@ public isLoggedIn()
   }
   
 ngOnInit() {
-this.addForm = this.formBuilder.group({
-_id: [],
-code: ['', Validators.required],
-name: ['', Validators.required],
-length: ['', Validators.required],
-start: ['', Validators.required],
-resort: ['', Validators.required],
-perPerson: ['', Validators.required],
-image: ['', Validators.required],
-description: ['', Validators.required],
-})
+  this.addForm = this.formBuilder.group({
+    _id: [],
+    code: ['', Validators.required],
+    name: ['', Validators.required],
+    length: ['', Validators.required],
+    start: ['', Validators.required],
+    resort: ['', Validators.required],
+    perPerson: ['', Validators.required],
+    image: ['', Validators.required],
+    description: ['', Validators.required],
+  })
 }
-public onSubmit() {
-this.submitted = true;
-if(this.addForm.valid){
-this.tripService.addTrip(this.addForm.value)
-.subscribe( {
-next: (data: any) => {
-console.log(data);
-this.router.navigate(['']);
-},
-error: (error: any) => {
-console.log('Error: ' + error);
-}});
-}
+  public onSubmit() {
+  this.submitted = true;
+  if(this.addForm.valid){
+    this.tripService.addTrip(this.addForm.value)
+    .subscribe( {
+      next: (data: any) => {
+      console.log(data);
+      this.router.navigate(['']);
+      },
+      error: (error: any) => {
+      console.log('Error: ' + error);
+    }});
+  }
 }
 // get the form short name to access the form fields
 get f() { return this.addForm.controls; }

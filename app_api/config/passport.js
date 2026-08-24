@@ -3,6 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const User = require("../models/user");
 
+// Configure Passport to use the local strategy for authentication
 passport.use(
   new LocalStrategy(
     {

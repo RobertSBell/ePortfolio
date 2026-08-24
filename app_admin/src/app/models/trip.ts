@@ -1,3 +1,4 @@
+// Trip model interface
 export interface Trip {
     _id: string,
     code: string,
