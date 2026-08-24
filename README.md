@@ -39,6 +39,11 @@ In the second round of enhancements, I set the LCD display to show the current t
 In the third round of enhancements, I put a great deal of work into the display redefining things for the most attractive look.  The date now displays as “Aug 23rd” instead of “Aug 23” with a function added to change the suffix based on the day.  I added the ability to display time according to a 12 hour clock “7:58AM” instead of  “07:58:05”.  So the first line reads “Aug 23rd  7:58PM” instead of “Aug 23 07:58:05”.  I added multiple functions to the green state button: pressing the button changes the states normally, however holding the button down for 3 seconds switches between displaying 12 hour time and military time.  The military time now displays as  “Aug 23rd  07:58”.
 If I were to make further updates, I’d like to hook it to a heater and AC and give it control of both.  I’d also like to add a energy saving mode.
 
+#### The Files
+##### [Old Implementation(python/RaspberryPi)](/Thermostat-Old/)
+
+##### [New Implementation(C++/Arduino)](/Thermostat-Enhanced/)
+
 #### Visual Examples
 ##### [Original implementation written in python running on Raspberry Pi in Ubuntu](https://youtu.be/t8UX5NL1YPQ)
 
@@ -57,6 +62,11 @@ I selected this item because full-stack developers and web developers are contin
 In the first round of improvements the artifact was improved by conducting a thorough code review targeting any bugs or errors that arose but primarily addressing professional style, formatting, and consistency.  In this endeavor I formatted and added additional commentary to 20 different pages.  I removed all files and numerous portions of code created during testing that are not used in the final implementation.  I discovered and fixed several errors.  Security tokens are properly implemented.
 During the second round of enhancements, I focused on improving trip schema which models the trip database entries used by the angular admin page and the website page “travel.hbs”.  I modified the trip-cards to display more useful information on the admin page and modified travel.hbs to display more information more cleanly.  Expanded upon what information was viewable only while logged in.  Modified the add and edit trip pages/modules to include real time validation of each field with useful feedback.  Added the end (Date) field.  Admins can now either enter the length of stay and the start date to generate the end date or they can enter start date and the end date to generate the length of stay.  The edit/add pages dynamically gray out the other field when the other is filled in.
 During the third round of enhancements, I added a function to pages to display a placeholder image in the event the image filename specified could not be found.
+
+#### The Files
+##### [Old Implementation](/travlr-old/)
+
+##### [New Implementation](/travler-enhanced/)
 
 #### Visual Examples (Before and After)
 
