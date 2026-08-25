@@ -5,7 +5,7 @@ Good day to you, my name is Robert Bell, I have a BS in Biology with a Math mino
 
 # Professional Self-Assessment
 ### Foundation
-Between the two programs I have developed a particularly broad foundation in software development and developed the skills needed to tackle highly advanced projects as well as the foundation and flexibility required to pick up new skills as needed.  I have worked in all of the standard programming languages though I have also tackled niche languages like COBOL in addition to getting experience porting software from one language to another.  I have worked in a dozen different development environments and with wide range of development tools.
+Between the two Computer Science programs I have developed a particularly broad foundation in software development and developed the skills needed to tackle highly advanced projects as well as the foundation and flexibility required to pick up new skills as needed.  I have worked in all of the standard programming languages though I have also tackled niche languages like COBOL in addition to getting experience porting software from one language to another.  I have worked in a dozen different development environments and with wide range of development tools.
 
 ### Data Structures and Algorithms
 The two programs have taken me from basic data structures and algorithms to far more advanced ones and working on projects such as the K-9 rescue center database and smart thermostat have frequently inspired me in developing ever more creative and robust data structures and algorithms.
@@ -81,4 +81,4 @@ During the third round of enhancements, I added a function to pages to display a
 ![Travel Page After](docs/assets/img/TravelPageAfter.png)
 
 ### Brief Reflection
-Web development has trended towards being an avenue where I am weaker, I faced numerous challenges updating the implementation from what was described in the assignment to the modern angular framework but in doing so I developed a great deal more comfort working in the MEAN stack, working with servers, and user login/registration.  Getting everything to work as intended in such a large project proved quite difficult but very rewarding in experience.
+Jury rigging the original assignment into the modern angular framework as well as thoroughly redefining field data types in the database was more challenging than if I'd been able to implement it correctly from the start but the experience in maying broad changes to a massive project was spectacular and the design process for data verification was fun. I have developed a great deal more comfort working in the MEAN stack, working with servers, working with GitHub, and user login/registration.  Getting everything to work as intended in such a large project proved a quite difficult but very rewarding in experience.
