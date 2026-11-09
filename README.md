@@ -23,8 +23,6 @@ In the program I have learned a great deal about communication with stakeholders
 
 ![State Machine Diagram](/docs/assets/img/StateMachineDiagram.png)
 
-# [Casual Code Review](https://youtu.be/U2nA5Dp6yIw) (YouTube Link)
-
 # [Narrative Milestones Collection](NARRATIVE-LINKS.md)
 
 # Artifact 1 - Thermostat
