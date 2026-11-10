@@ -25,6 +25,7 @@ In the program I have learned a great deal about communication with stakeholders
 
 ### C++ Graphics Development with OpenGL
 ![OpenGL Example](/docs/assets/img/OpenGLExample.png)
+
 I also have worked on a couple projects related to OpenGL graphics development.
 
 # [Narrative Milestones Collection](NARRATIVE-LINKS.md)
